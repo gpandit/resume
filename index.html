@@ -1,0 +1,523 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guru Pandit | Program & Platform Delivery Leader</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f1320;
+      --panel: #111829;
+      --muted: #8ba1c5;
+      --text: #e9edf5;
+      --accent: #7ad7f0;
+      --accent-2: #c7ff6b;
+      --card: rgba(255, 255, 255, 0.04);
+      --border: rgba(255, 255, 255, 0.12);
+      --shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+      --radius: 16px;
+      --max-width: 1100px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "DM Sans", system-ui, -apple-system, sans-serif;
+      background: radial-gradient(circle at 20% 20%, rgba(122, 215, 240, 0.15), transparent 35%),
+                  radial-gradient(circle at 80% 0%, rgba(199, 255, 107, 0.12), transparent 30%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      padding: 32px 18px 64px;
+    }
+    .page {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    header.hero {
+      background: linear-gradient(140deg, rgba(255, 255, 255, 0.04), rgba(122, 215, 240, 0.08));
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      border-radius: 24px;
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    header.hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 85% 20%, rgba(199, 255, 107, 0.12), transparent 35%);
+      pointer-events: none;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-size: 13px;
+      letter-spacing: 0.01em;
+      color: var(--muted);
+    }
+    h1 {
+      font-family: "Space Grotesk", "DM Sans", sans-serif;
+      font-size: clamp(32px, 4vw, 44px);
+      margin: 16px 0 12px;
+      line-height: 1.2;
+    }
+    p.lead {
+      color: #cfd8ec;
+      font-size: 17px;
+      margin: 0 0 20px;
+      max-width: 800px;
+    }
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .cta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin: 24px 0;
+    }
+    .button {
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border 0.15s ease;
+    }
+    .button.primary {
+      background: linear-gradient(120deg, var(--accent), #55c4e4);
+      color: #0a1020;
+      box-shadow: 0 12px 30px rgba(122, 215, 240, 0.35);
+    }
+    .button.ghost {
+      color: var(--text);
+      border-color: var(--border);
+      background: rgba(255, 255, 255, 0.04);
+    }
+    .button:hover { transform: translateY(-1px); }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 8px;
+    }
+    .stat {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+    }
+    .stat .value {
+      font-family: "Space Grotesk", "DM Sans", sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .stat .label {
+      color: var(--muted);
+      font-size: 13px;
+    }
+    section {
+      margin-top: 36px;
+    }
+    section h2 {
+      font-family: "Space Grotesk", "DM Sans", sans-serif;
+      font-size: 22px;
+      margin-bottom: 12px;
+      letter-spacing: 0.01em;
+    }
+    .section-note {
+      color: var(--muted);
+      margin-top: -6px;
+      margin-bottom: 18px;
+      font-size: 14px;
+    }
+    .timeline {
+      border-left: 2px solid var(--border);
+      padding-left: 16px;
+      display: grid;
+      gap: 16px;
+    }
+    .role {
+      position: relative;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 20px 14px;
+      box-shadow: var(--shadow);
+    }
+    .role::before {
+      content: "";
+      position: absolute;
+      left: -25px;
+      top: 22px;
+      width: 10px;
+      height: 10px;
+      background: var(--accent-2);
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px rgba(199, 255, 107, 0.18);
+    }
+    .role-header {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: baseline;
+    }
+    .role-title {
+      font-weight: 700;
+      font-size: 16px;
+    }
+    .role-meta {
+      color: var(--muted);
+      font-size: 14px;
+      margin-left: auto;
+    }
+    .highlights {
+      margin: 12px 0 0;
+      padding-left: 16px;
+      color: #d8e2f7;
+    }
+    .highlights li {
+      margin-bottom: 8px;
+    }
+    .stack {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 17px;
+    }
+    .card p { margin: 0 0 10px; color: #d8e2f7; }
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .tag {
+      border: 1px solid var(--border);
+      padding: 6px 10px;
+      border-radius: 10px;
+      color: var(--muted);
+      font-size: 13px;
+      background: rgba(255, 255, 255, 0.03);
+    }
+    .contact {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 12px;
+      align-items: center;
+    }
+    .contact a {
+      color: var(--text);
+    }
+    .socials {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .socials a {
+      color: var(--text);
+      text-decoration: none;
+      padding: 8px 10px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.03);
+      transition: border 0.15s ease, transform 0.15s ease;
+    }
+    .socials a:hover { border-color: var(--accent); transform: translateY(-1px); }
+    @media (max-width: 700px) {
+      header.hero { padding: 24px; }
+      .hero-meta { flex-direction: column; align-items: flex-start; }
+      .role-meta { width: 100%; margin-left: 0; }
+      body { padding: 20px 12px 48px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <span class="pill">Guru Pandit — Program & Platform Delivery Leader</span>
+      <h1>Transforming digital platforms and programmes across finance, retail, and public sector.</h1>
+      <p class="lead">
+        Over two decades leading large-scale eCommerce, cloud migrations, and digital transformations for global brands and government organisations.
+        I blend platform engineering, agile delivery, and product thinking to ship resilient systems and measurable business outcomes.
+      </p>
+      <div class="hero-meta">
+        <span>Based in the UAE and UK · Operating across EMEA/APAC</span>
+        <span>hello@pandit.guru</span>
+        <span>Trusted by Deloitte, NTT DATA, FCA, Dyson, MoD, Nissan, JLR, Sedex</span>
+      </div>
+      <div class="cta">
+        <a class="button primary" href="mailto:hello@pandit.guru">Let's talk</a>
+        <a class="button ghost" href="https://www.pandit.guru/portfolio" target="_blank" rel="noreferrer">View portfolio</a>
+        <a class="button ghost" href="#experience">View experience</a>
+      </div>
+      <div class="stats">
+        <div class="stat">
+          <div class="value">30+ markets</div>
+          <div class="label">Adobe Commerce launches in 18 months</div>
+        </div>
+        <div class="stat">
+          <div class="value">30% savings</div>
+          <div class="label">Infra and resourcing costs reduced</div>
+        </div>
+        <div class="stat">
+          <div class="value">99.9% uptime</div>
+          <div class="label">Stability achieved post-migration</div>
+        </div>
+        <div class="stat">
+          <div class="value">80+ team</div>
+          <div class="label">Multi-region consultants coordinated</div>
+        </div>
+      </div>
+    </header>
+
+    <section id="experience">
+      <h2>Career Journey</h2>
+      <p class="section-note">Leading programmes that merge platform reliability with commercial impact.</p>
+      <div class="timeline">
+        <article class="role">
+          <div class="role-header">
+            <div class="role-title">Platform Lead & Program Manager · Dyson Technologies</div>
+            <div class="role-meta">Jan 2021 – Nov 2024 · Malmesbury, UK</div>
+          </div>
+          <ul class="highlights">
+            <li>Built a Platform DevOps function to stabilise Magento operations and prepare migration to Adobe Commerce Cloud.</li>
+            <li>Directed 80+ consultants across EMEA/APAC to re-platform 30+ markets, elevating performance and resilience.</li>
+            <li>Cut infrastructure/resource costs by 30% while sustaining 99.9% uptime and accelerating feature delivery.</li>
+          </ul>
+          <div class="stack">Stack: Adobe Commerce Cloud, AWS, Adobe Target, Magento</div>
+        </article>
+
+        <article class="role">
+          <div class="role-header">
+            <div class="role-title">Project Manager · Financial Conduct Authority (FCA)</div>
+            <div class="role-meta">Apr 2019 – Dec 2019 · London, UK</div>
+          </div>
+          <ul class="highlights">
+            <li>Led Digital Regulatory Reporting pilots with the Bank of England, using LLMs to translate policy into machine-readable rules.</li>
+            <li>Rolled out a Document Management System on Office365/SharePoint, replacing OpenText and modernising governance.</li>
+            <li>Reported to joint FCA/BoE steering committees, aligning delivery teams with compliance and data quality goals.</li>
+          </ul>
+          <div class="stack">Focus: Regulatory tech, SharePoint, Office365, operating model design</div>
+        </article>
+
+        <article class="role">
+          <div class="role-header">
+            <div class="role-title">Agile Coach · UBS</div>
+            <div class="role-meta">Feb 2019 – Mar 2019 · London, UK</div>
+          </div>
+          <ul class="highlights">
+            <li>Reviewed Dev Cloud delivery practices, improving Scrum/Kanban rituals and JIRA visibility for CI/CD value streams.</li>
+            <li>Optimised GitLab, Azure DevOps, and Jenkins usage to tighten feedback loops and predictability.</li>
+          </ul>
+          <div class="stack">Stack: GitLab, Azure DevOps, Jenkins, JIRA</div>
+        </article>
+
+        <article class="role">
+          <div class="role-header">
+            <div class="role-title">Portfolio Delivery Manager · Ministry of Defence (via Capita)</div>
+            <div class="role-meta">Oct 2017 – Aug 2018 · UK</div>
+          </div>
+          <ul class="highlights">
+            <li>Delivered a new digital talent platform, shaping the roadmap and user stories with the client product lead and CTO.</li>
+            <li>Led an offshore team in Vietnam, keeping delivery aligned to business priorities and launch milestones.</li>
+          </ul>
+          <div class="stack">Focus: Portfolio governance, roadmap ownership, distributed delivery</div>
+        </article>
+
+        <article class="role">
+          <div class="role-header">
+            <div class="role-title">Agile Project Manager · Sedex</div>
+            <div class="role-meta">Oct 2017 – Aug 2018 · London, UK</div>
+          </div>
+          <ul class="highlights">
+            <li>Strengthened client operations with continuous delivery improvements and tighter onshore–offshore collaboration.</li>
+            <li>Negotiated high-value contracts that opened new growth opportunities.</li>
+          </ul>
+          <div class="stack">Focus: Agile delivery, stakeholder management, commercial negotiation</div>
+        </article>
+
+        <article class="role">
+          <div class="role-header">
+            <div class="role-title">Agile Project Manager · Great Ormond Street Hospital Children's Charity (via Deloitte)</div>
+            <div class="role-meta">Aug 2016 – Dec 2017 · London, UK</div>
+          </div>
+          <ul class="highlights">
+            <li>Led the re-discovery phase to replace the legacy RazorBlade CRM with Salesforce.</li>
+            <li>Facilitated workshops producing 500+ user stories across 20 epics; guided a multi-disciplinary team through pilot delivery.</li>
+          </ul>
+          <div class="stack">Stack: Salesforce, workshop facilitation, agile governance</div>
+        </article>
+
+        <article class="role">
+          <div class="role-header">
+            <div class="role-title">Senior Consultant · Nissan Motors (via Deloitte)</div>
+            <div class="role-meta">Jan 2017 – Aug 2017 · Global</div>
+          </div>
+          <ul class="highlights">
+            <li>Quality lead for AEM-based configurator and order management launch; defined supplier KPIs and defect triage.</li>
+            <li>Prioritised issues for Nissan-Americas rollout to keep senior stakeholders aligned on readiness.</li>
+          </ul>
+          <div class="stack">Stack: AEM, QA leadership, release management</div>
+        </article>
+
+        <article class="role">
+          <div class="role-header">
+            <div class="role-title">Agile Project Manager · Jaguar Land Rover (via NTT DATA)</div>
+            <div class="role-meta">Aug 2015 – May 2016 · India/UK</div>
+          </div>
+          <ul class="highlights">
+            <li>Directed Salesforce CRM rollout, delivering an opportunity-management pilot across 28 centres within five months.</li>
+            <li>Aligned stakeholders across India, Japan, and Singapore on feature priorities and agile cadence.</li>
+          </ul>
+          <div class="stack">Stack: Salesforce, agile coaching, global stakeholder management</div>
+        </article>
+
+        <article class="role">
+          <div class="role-header">
+            <div class="role-title">Project Manager · giffgaff (Telefonica O2)</div>
+            <div class="role-meta">Jan 2013 – Nov 2014 · UK</div>
+          </div>
+          <ul class="highlights">
+            <li>Delivered 4G launch, fair-usage policy via analytics, first Android app, and key regulatory/pricing changes.</li>
+          </ul>
+          <div class="stack">Focus: Mobile product delivery, analytics-led decisions</div>
+        </article>
+
+        <article class="role">
+          <div class="role-header">
+            <div class="role-title">Earlier: Project & Program Manager; Software Engineer / Tech Lead / Operations Analyst</div>
+            <div class="role-meta">2000 – 2016</div>
+          </div>
+          <ul class="highlights">
+            <li>Progressed from engineering into programme leadership, pairing technical depth with delivery discipline.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="ventures">
+      <h2>Founder-Led Ventures</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Palmleaf Tableware · Founder</h3>
+          <p>Eco-friendly, plastic-free tableware brand launched in Woking, aligned to the EU’s 2021 single-use ban.</p>
+          <ul class="highlights">
+            <li>Identified market gap and built a sustainable product line with Wix then Shopify, integrated to Amazon/eBay.</li>
+            <li>Built a brand that resonates with eco-conscious consumers and event organisers.</li>
+          </ul>
+          <div class="stack">Stack: Shopify, Wix, Adobe Creative Cloud, Canva, marketplace ops</div>
+        </div>
+        <div class="card">
+          <h3>I Create Art · Founder & Owner</h3>
+          <p>Premium art and craft products for the European market, grown from a Covid-era side project.</p>
+          <ul class="highlights">
+            <li>Defined brand vision, curated catalogues, and built supplier relationships for consistent quality.</li>
+            <li>Built a community-focused customer experience that encourages creativity.</li>
+          </ul>
+          <div class="stack">Visit: <a href="https://www.icreate.art" target="_blank" rel="noreferrer">www.icreate.art</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2>Focus & Tools</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Program Delivery</h3>
+          <p>Agile coaching, portfolio governance, OKRs, steering and C-level comms, risk management.</p>
+          <div class="pill-row">
+            <span class="tag">Agile / Scrum / Kanban</span>
+            <span class="tag">Roadmaps</span>
+            <span class="tag">Vendor leadership</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Platforms & Cloud</h3>
+          <p>Re-platforming and scaling commerce experiences across global markets.</p>
+          <div class="pill-row">
+            <span class="tag">Adobe Commerce</span>
+            <span class="tag">Magento</span>
+            <span class="tag">AWS</span>
+            <span class="tag">AEM</span>
+            <span class="tag">Salesforce</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>DevOps & Delivery Tooling</h3>
+          <p>Build and release optimisation for distributed teams.</p>
+          <div class="pill-row">
+            <span class="tag">GitLab</span>
+            <span class="tag">Azure DevOps</span>
+            <span class="tag">Jenkins</span>
+            <span class="tag">JIRA</span>
+            <span class="tag">Office365 / SharePoint</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Product & Customer</h3>
+          <p>Discovery, user story mapping, analytics-informed decisions, and voice-of-customer loops.</p>
+          <div class="pill-row">
+            <span class="tag">Workshops</span>
+            <span class="tag">User stories</span>
+            <span class="tag">Data-informed prioritisation</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Let’s Connect</h2>
+      <div class="contact">
+        <div>
+          <p>Open to discussing complex delivery programmes, platform turnarounds, and commerce transformations.</p>
+          <div class="pill-row">
+            <span class="tag">hello@pandit.guru</span>
+            <span class="tag">EMEA / APAC</span>
+          </div>
+        </div>
+        <div class="socials">
+          <span>Social:</span>
+          <a href="https://www.facebook.com/gurupandit" target="_blank" rel="noreferrer">Facebook</a>
+          <a href="https://www.instagram.com/gurupandit" target="_blank" rel="noreferrer">Instagram</a>
+          <a href="https://tiktok.com/gurupandit" target="_blank" rel="noreferrer">TikTok</a>
+          <a href="https://x.com/gurupandit" target="_blank" rel="noreferrer">X / Twitter</a>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
